@@ -22,7 +22,7 @@ function service(partial: Partial<ServiceStatus> & Pick<ServiceStatus, 'name' | 
 test('resolveServices matches exact Castellan name', (assert) => {
 
     const services = [
-        service({name: 'api', repository: 'api-service'}),
+        service({name: 'api', repository: 'server'}),
         service({name: 'ingest-worker', repository: 'ingest-worker'}),
     ];
     const {resolved, missing} = resolveServices(services, ['api']);
@@ -32,12 +32,12 @@ test('resolveServices matches exact Castellan name', (assert) => {
 
 });
 
-test('resolveServices matches repository basename (api-service → api)', (assert) => {
+test('resolveServices matches repository basename (server → api)', (assert) => {
 
     const services = [
-        service({name: 'api', repository: '123.dkr.ecr.us-east-2.amazonaws.com/api-service'}),
+        service({name: 'api', repository: '123.dkr.ecr.us-east-2.amazonaws.com/server'}),
     ];
-    const {resolved, missing} = resolveServices(services, ['api-service']);
+    const {resolved, missing} = resolveServices(services, ['server']);
 
     assert.equal(missing.length, 0);
     assert.equal(resolved[0]?.name, 'api');
@@ -46,7 +46,7 @@ test('resolveServices matches repository basename (api-service → api)', (asser
 
 test('resolveServices reports missing queries', (assert) => {
 
-    const services = [service({name: 'api', repository: 'api-service'})];
+    const services = [service({name: 'api', repository: 'server'})];
     const {resolved, missing} = resolveServices(services, ['nope']);
 
     assert.equal(resolved.length, 0);
@@ -56,8 +56,8 @@ test('resolveServices reports missing queries', (assert) => {
 
 test('resolveServices dedupes when query aliases the same service', (assert) => {
 
-    const services = [service({name: 'api', repository: 'api-service'})];
-    const {resolved, missing} = resolveServices(services, ['api', 'api-service']);
+    const services = [service({name: 'api', repository: 'server'})];
+    const {resolved, missing} = resolveServices(services, ['api', 'server']);
 
     assert.equal(missing.length, 0);
     assert.equal(resolved.length, 1);

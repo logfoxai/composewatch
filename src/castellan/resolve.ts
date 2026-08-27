@@ -10,7 +10,7 @@ function repositoryBasename(repository: string): string {
 
 /**
  * Resolve a user query to a Castellan managed service.
- * Matches exact name first, then repository basename (e.g. api-service → api).
+ * Matches exact name first, then repository basename (e.g. server → api).
  */
 export function resolveServices(
     services: ServiceStatus[],

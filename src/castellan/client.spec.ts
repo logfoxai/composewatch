@@ -86,7 +86,7 @@ test('CastellanClient status and history parse JSON', async (assert) => {
                 services: [{
                     name: 'api',
                     registry: 'example.com',
-                    repository: 'api-service',
+                    repository: 'server',
                     tag: 'prime',
                     state: 'stable',
                     currentDigest: 'sha256:abc',

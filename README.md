@@ -30,12 +30,12 @@ Use the **dashboard** for day-to-day ops. Use this CLI in **automation** (GitHub
 export CASTELLAN_URL=http://castellan.example:8443
 export CASTELLAN_AUTH_TOKEN=…
 
-castellan watch api-service
+castellan watch server
 ```
 
 ```text
-🔎 Watching api-service
-✓ api STABLE myorg/api-service:staging a1b2c3d4e5f6
+🔎 Watching server
+✓ api STABLE myorg/server:staging a1b2c3d4e5f6
 🔄 Checking registry for updates…
 ✓ Check started — waiting for rollout
 📥 api pulling sha256:f6e5d4…
@@ -78,23 +78,23 @@ export CASTELLAN_URL=http://castellan.example:8443
 export CASTELLAN_AUTH_TOKEN=…
 
 # Force a registry check, then stream until settle
-castellan watch api-service
+castellan watch server
 
 # Watch only (something else already called check)
-castellan watch api-service --no-force-check
+castellan watch server --no-force-check
 
 # Multiple services
 castellan watch api ingest-worker issue-worker
 
 # Snapshot
 castellan status
-castellan status api-service
+castellan status server
 
 # Kick Castellan without waiting
 castellan check
 ```
 
-Service args match Castellan’s managed service **name**, or the image **repository basename** (e.g. `api-service` resolves to Castellan service `api` when that service’s repository ends in `api-service`).
+Service args match Castellan’s managed service **name**, or the image **repository basename** (e.g. `server` resolves to Castellan service `api` when that service’s repository ends in `server`).
 
 ### Shared options
 
@@ -146,8 +146,8 @@ Emits GitHub Actions annotations (`::error::`, `::notice::`) when running in Act
     CASTELLAN_URL: http://castellan.prime.logfox.ai:8443
     CASTELLAN_AUTH_TOKEN: ${{ /* from Secrets Manager or env */ }}
   run: |
-    deploy-compose-service api-service "$VERSION" "$PWD"
-    castellan watch api-service
+    deploy-compose-service server "$VERSION" "$PWD"
+    castellan watch server
 ```
 
 ## First npm publish (maintainers)
