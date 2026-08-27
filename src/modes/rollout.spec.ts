@@ -11,7 +11,7 @@ function service(partial: Partial<ServiceStatus> & Pick<ServiceStatus, 'name' | 
 
     return {
         registry: 'example.com',
-        repository: 'server',
+        repository: 'api-service',
         tag: 'prime',
         currentDigest: 'sha256:old',
         desiredDigest: 'sha256:old',
